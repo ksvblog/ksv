@@ -1,8 +1,115 @@
-{{ $time := time (int .Params.addDate)}} {{ $styles := resources.Get
-"css/styles.scss" | toCSS | postCSS (dict "config"
-"./assets/css/postcss.config.js") | resources.ExecuteAsTemplate (printf
-"styles.%s.css" $time) $time }} {{ if .Site.IsServer }}
-<link rel="stylesheet" href="{{ $styles.RelPermalink }}" />
-{{ else }} {{ $styles := $styles | minify | fingerprint | resources.PostCSS }}
-<link rel="stylesheet" href="{{ $styles.RelPermalink }}" />
+<meta property="og:title" content="{{ .Title }} | {{ .Site.Title }}" />
+<meta name="twitter:title" content="{{ .Title }} | {{ .Site.Title }}" />
+<meta itemprop="name" content="{{ .Title }} | {{ .Site.Title }}" />
+<meta name="application-name" content="{{ .Title }} | {{ .Site.Title }}" />
+<meta property="og:site_name" content="{{ .Site.Params.sitename }}" />
+<meta name="description" content="{{ .Params.description }}" />
+<meta itemprop="description" content="{{ .Params.description }}" />
+<meta property="og:description" content="{{ .Params.description }}" />
+<meta name="twitter:description" content="{{ .Params.description }}" />
+<base href="{{ .Permalink }}" />
+<link rel="canonical" href="{{ .Permalink }}" itemprop="url" />
+<meta name="url" content="{{ .Permalink }}" />
+<meta name="twitter:url" content="{{ .Permalink }}" />
+<meta property="og:url" content="{{ .Permalink }}" />
+<meta property="og:locale" content="{{ .Language.Lang }}" />
+<meta name="language" content="{{ .Language.LanguageName }}" />
+{{ range .AllTranslations }}
+  <link rel="alternate" hreflang="{{ .Language.Lang }}" href="{{ .Permalink }}" title="{{ .Language.LanguageName }}" />
 {{ end }}
+{{ with .Params.image }}
+  <meta itemprop="image" content="{{ . | absURL }}" />
+  <meta property="og:image" content="{{ . | absURL }}" />
+  <meta name="twitter:image" content="{{ . | absURL }}" />
+  <meta name="twitter:image:src" content="{{ . | absURL }}" />
+{{ else }}
+  <meta itemprop="image" content="{{ .Site.Params.ogimage | absURL }}" />
+  <meta property="og:image" content="{{ .Site.Params.ogimage | absURL }}" />
+  <meta name="twitter:image" content="{{ .Site.Params.ogimage | absURL }}" />
+  <meta name="twitter:image:src" content="{{ .Site.Params.ogimage | absURL }}" />
+{{ end }}
+<meta property="og:updated_time" content="{{ .Lastmod.Format "2006-01-02T15:04:05Z0700" | safeHTML }}" />
+<link rel="sitemap" type="application/xml" title="Sitemap" href="{{ "sitemap.xml" | absURL }}" />
+{{ with .OutputFormats.Get "RSS" }}
+  <link href="{{ .Permalink }}" rel="alternate" type="application/rss+xml" title="{{ $.Site.Title }}" />
+  <link href="{{ .Permalink }}" rel="feed" type="application/rss+xml" title="{{ $.Site.Title }}" />
+{{ end }}
+{{ if eq .Section "post" }}
+  {{ $paginator := .Paginate (where .Pages "Section" "post") }}
+  {{ if $paginator }}
+    <link rel="first" href="{{ $paginator.First.URL }}" />
+    <link rel="last" href="{{ $paginator.Last.URL }}" />
+    {{ if $paginator.HasPrev }}
+      <link rel="prev" href="{{ $paginator.Prev.URL }}" />
+    {{ end }}
+    {{ if $paginator.HasNext }}
+      <link rel="next" href="{{ $paginator.Next.URL }}" />
+    {{ end }}
+  {{ end }}
+  <meta property="og:type" content="article" />
+  <meta property="article:publisher" content="{{ .Site.Params.facebook }}" />
+  <meta property="og:article:published_time" content="{{ .Date.Format "2006-01-02T15:04:05Z0700" | safeHTML }}" />
+  <meta property="article:published_time" content="{{ .Date.Format "2006-01-02T15:04:05Z0700" | safeHTML }}" />
+  {{ with.Params.author }}
+    <meta property="og:article:author" content="{{ humanize . }}" />
+    <meta property="article:author" content="{{ humanize . }}" />
+    <meta name="author" content="{{ humanize . }}" />
+  {{ end }}
+  {{ with.Params.category }}
+    <meta name="news_keywords" content="{{ index . 0 }}" />
+    <meta property="article:section" content="{{ index . 0 }}" />
+  {{ end }}
+<script defer type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "Article",
+    "headline": {{ .Title }},
+    "author": {
+      "@type": "Person",
+      "name": "{{ .Site.Params.github }}"
+    },
+    "datePublished": "{{ .Date.Format "2006-01-02" }}",
+    "description": {{ .Description }},
+    "wordCount": {{ .WordCount }},
+    "mainEntityOfPage": "True",
+    "dateModified": "{{ .Lastmod.Format "2006-01-02" }}",
+    "image": {
+      "@type": "imageObject",
+      "url": "{{ with .Params.image }}{{ .Permalink }}{{ end }}"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "{{ .Site.Title }}",
+      "logo": {
+        "@type": "imageObject",
+        "url": "https://ksvblog.in/favicon.png"
+      }
+    }
+  }
+</script>
+{{ end }}
+<meta property="og:type" content="website" />
+<meta name="author" content="{{ .Site.Params.author }}" />
+<script defer type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "WebSite",
+    "url": "{{ .Permalink }}",
+    "sameAs": [
+      "{{ .Site.Params.facebook }}",
+      "{{ .Site.Params.github }}"
+    ],
+    "name": "{{ .Title }}",
+    "logo": "https://ksvblog.in/favicon.png"
+  }
+</script> {{/* Favicon */}}<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+<link rel="manifest" href="/site.webmanifest" />{{/* Favicon */}}
+<meta name="robots" content="index,follow" />
+<meta name="googlebot" content="index,follow" />
+<meta name="twitter:site" content="{{ .Site.Params.twitter }}" />
+<meta name="twitter:creator" content="{{ .Site.Params.twitter }}" />
+<meta property="fb:app_id" content="538089519640705" />
+<meta property="fb:admins" content="100000686899395" />
+{{- partial "css.html" . -}}
