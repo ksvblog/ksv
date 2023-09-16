@@ -8,7 +8,7 @@
     {{- partial "def/head.html" . -}}
   </head>
   <html>
-    <body class="container mx-auto">
+    <body class="container mx-auto dark:text-white dark:bg-gray-800">
       {{- partial "def/header.html" . -}}
       <section id="content">{{- block "main" . }}{{- end }}</section>
       {{- partial "def/footer.html" . -}}
