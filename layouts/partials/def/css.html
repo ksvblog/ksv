@@ -1,7 +1,16 @@
-{{ $styles := resources.Get "/css/style.css" | postCSS }}
 {{ if .Site.IsServer }}
-  <link rel="stylesheet" href="{{ $styles.RelPermalink }}" />
+  {{ $seed := "weqklrjfmnk213409ufasdfhnlk3j4bladsfsl" }}
+  {{ $random := delimit (shuffle (split (md5 $seed) "" )) "" }}
+  {{ $style := resources.Get "css/main.css"
+    | resources.Minify
+    | resources.PostCSS
+    | resources.ExecuteAsTemplate (printf "style.dev.%s.css" $random) $random
+  }}
+  <link rel="stylesheet" href="{{ $style.RelPermalink }}" />
 {{ else }}
-  {{ $styles := $styles | minify | fingerprint | resources.PostProcess }}
-  <link rel="stylesheet" href="{{ $styles.RelPermalink }}" integrity="{{ $styles.Data.Integrity }}" />
+  {{ $style := resources.Get "css/main.css"
+    | resources.PostCSS
+    | resources.Minify
+  }}
+  <link rel="stylesheet" href="{{ $style.RelPermalink }}" />
 {{ end }}
