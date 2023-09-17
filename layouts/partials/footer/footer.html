@@ -6,4 +6,4 @@
   }
 </script>
 {{ $script := resources.Get "js/site.js" | minify }}
-<script src="{{ $script.RelPermalink }}"></script>
+<script src="{{ $script.Permalink }}"></script>
