@@ -8,9 +8,9 @@
     {{- partial "header/head" . -}}
   </head>
   <html>
-    <body class="container mx-auto py-3 sm:py-0 px-2 md:px-0 dark:text-white dark:bg-gray-800">
+    <body class="container mx-auto py-3 sm:py-0 px-2 md:px-0 bg-white dark:bg-gray-900 dark:text-white">
       {{- partial "header/header" . -}}
-      <section id="content">{{- block "main" . }}{{- end }}</section>
+      <section class="my-10" id="content">{{- block "main" . }}{{- end }}</section>
       {{- partial "footer/footer" . -}}
     </body>
   </html>
