@@ -7,20 +7,17 @@
   </div>
   <div class="text-center">
     <p class="credits copyright flex items-center justify-center">
-     {{ index .Site.Data.seo.year }}- {{ now.Format "2006" }}
+      {{ index .Site.Data.seo.year }}-
+      {{ now.Format "2006" }}
       <span class="mx-2 text-xl">↭</span>
-      <a href="{{ .Site.BaseURL }}" class="font-semibold hover:text-gray-500"  aria-label="{{ .Site.Title }}">{{ .Site.Title }}</a>
+      <a href="{{ .Site.BaseURL }}" class="font-semibold hover:text-gray-500" aria-label="{{ .Site.Title }}">{{ .Site.Title }}</a>
     </p>
-    {{/* {{- with .Site.Params.social }}
-    <div id="social-icons">{{ partialCached "social.html" . }}</div>
-    {{- end }} */}}
     {{ partial "footer/social" . }}
-    <p class="credits">
-      Powered By <a href="https://gohugo.io" class="text-semibold shover:text-gray-500">Hugo</a>
-    </p>
+    <p class="credits">Powered By <a href="https://gohugo.io" class="text-semibold shover:text-gray-500">Hugo</a></p>
     <div class="credits copyright">
-      {{ index .Site.Data.seo.license }}    
-      <a class="text-semibold hover:text-gray-500" href="{{ .Site.BaseURL }}previously" title="Previously on...">{{ index .Site.Data.seo.year }}</a> – 2023.</div>
+      {{ index .Site.Data.seo.license }}
+      <a class="text-semibold hover:text-gray-500" href="{{ .Site.BaseURL }}previously" title="Previously on...">{{ index .Site.Data.seo.year }}</a> – 2023.
+    </div>
   </div>
 </footer>
 {{ partial "search-modal" (dict "Context" . "Class" "search-modal") }}
