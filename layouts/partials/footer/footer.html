@@ -1,10 +1,27 @@
-<script>
-  if (localStorage.getItem("color-theme") === "dark" || (!("color-theme" in localStorage) && window.matchMedia("(prefers-color-scheme: dark)").matches)) {
-    document.documentElement.classList.add("dark");
-  } else {
-    document.documentElement.classList.remove("dark");
-  }
-</script>
-{{ $site := resources.Get "js/site.js" }}
-<script src="{{ $site.Permalink }}"></script>
-{{ if .Params.katex }}{{ partial "misc/katex" . }}{{ end }}
+<footer class="flex flex-col justify-center items-center my-3">
+  <div class="inline-flex items-center justify-center w-full">
+    <hr class="w-96 h-px my-8 bg-gray-200 border-0 rounded dark:bg-gray-700" />
+    <div class="absolute px-4 -translate-x-1/2 bg-white left-1/2 dark:bg-gray-900">
+      <i class="fa-regular fa-heart-pulse fa-beat"></i>
+    </div>
+  </div>
+  <div class="text-center">
+    <p class="credits copyright flex items-center justify-center">
+     {{ index .Site.Data.seo.year }}- {{ now.Format "2006" }}
+      <span class="mx-2 text-xl">↭</span>
+      <a href="{{ .Site.BaseURL }}" class="font-semibold hover:text-gray-500"  aria-label="{{ .Site.Title }}">{{ .Site.Title }}</a>
+    </p>
+    {{/* {{- with .Site.Params.social }}
+    <div id="social-icons">{{ partialCached "social.html" . }}</div>
+    {{- end }} */}}
+    {{ partial "footer/social" . }}
+    <p class="credits">
+      Powered By <a href="https://gohugo.io" class="text-semibold shover:text-gray-500">Hugo</a>
+    </p>
+    <div class="credits copyright">
+      {{ index .Site.Data.seo.license }}    
+      <a class="text-semibold hover:text-gray-500" href="{{ .Site.BaseURL }}previously" title="Previously on...">{{ index .Site.Data.seo.year }}</a> – 2023.</div>
+  </div>
+</footer>
+{{ partial "search-modal" (dict "Context" . "Class" "search-modal") }}
+{{- partial "footer/scripts" . -}}
