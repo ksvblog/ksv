@@ -11,6 +11,9 @@
       <a class="font-medium sm:py-6" href="#">Account</a>
       <a class="font-medium sm:py-6" href="#">Work</a>
       <a class="font-medium sm:py-6" href="#">Blog</a>
+      {{ if site.Params.search.enable }}
+        <button data-target="search-modal">Search Button</button>
+      {{ end }}
       <button id="theme-toggle" type="button" class="text-gray-500 dark:text-gray-400 focus:outline-none focus:ring-0 focus:ring-offset-0 rounded-lg text-md">
         <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
         <svg id="theme-toggle-light-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
