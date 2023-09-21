@@ -1,7 +1,7 @@
 {{ define "main" }}
   <main aria-role="main">
     <div class="flex flex-col space-y-7">
-      {{ range first 10 .Site.RegularPages }}
+      {{ range ( where .Site.RegularPages "Type" "posts" | first 5) }}
         {{ .Render "summary" }}
       {{ end }}
     </div>
