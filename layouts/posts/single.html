@@ -5,15 +5,35 @@
       <h1 class="font-sans text-2xl leading-tight font-bold text-gray-800">{{ .Title }}</h1>
       <aside id="meta">
         <p class="text-gray-500 mt-2">
-          <strong>Published: </strong> <time datetime="{{ .PublishDate.Format "2006-01-02 " }}">{{ .PublishDate.Format "Jan 2, 2006" }}</time> • <strong>Lastmod: </strong>{{ .Lastmod.Format "Jan 2, 2006" }}
-          • <strong>Author:</strong> {{ $author.name }}
+          <strong>Published:</strong>
+          <time datetime="{{ .PublishDate.Format "2006-01-02 " }}">{{ .PublishDate.Format "Jan 2, 2006" }}</time>
+          •
+          <strong>Lastmod:</strong>
+          {{ .Lastmod.Format "Jan 2, 2006" }}
+          •
+          <strong>Author:</strong>
+          {{ $author.name }}
           • {{ .ReadingTime }} {{ if eq .ReadingTime 1 }}min{{ else }}mins{{ end }} read • {{ .WordCount }} Words
         </p>
         {{ with .GetTerms "tags" }}
-          <p class="text-gray-500 mt-1"><strong>Tags:</strong> {{ range . }}<a href="{{ .RelPermalink }}">#{{ .LinkTitle }}</a> •{{ else }}{{ end }}</p>
+          <p class="text-gray-500 mt-1">
+            <strong>Tags:</strong>
+            {{ range . }}
+              <a href="{{ .RelPermalink }}">#{{ .LinkTitle }}</a>
+              •
+            {{ else }}
+            {{ end }}
+          </p>
         {{ end }}
         {{ with .GetTerms "topics" }}
-          <p class="text-gray-500 mt-1"><strong>Topics:</strong> {{ range . }}<a href="{{ .RelPermalink }}">#{{ .LinkTitle }}</a> •{{ else }}{{ end }}</p>
+          <p class="text-gray-500 mt-1">
+            <strong>Topics:</strong>
+            {{ range . }}
+              <a href="{{ .RelPermalink }}">#{{ .LinkTitle }}</a>
+              •
+            {{ else }}
+            {{ end }}
+          </p>
         {{ end }}
       </aside>
     </header>
