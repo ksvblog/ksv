@@ -12,12 +12,8 @@
       <span class="mx-2 text-xl">↭</span>
       <a href="{{ .Site.BaseURL }}" class="font-semibold hover:text-gray-500" aria-label="{{ .Site.Title }}">{{ .Site.Title }}</a>
     </p>
-    {{ partial "footer/social" . }}
-    <p class="credits">Powered By <a href="https://gohugo.io" class="text-semibold shover:text-gray-500">Hugo</a></p>
-    <div class="credits copyright">
-      {{ index .Site.Data.seo.license }}
-      <a class="text-semibold hover:text-gray-500" href="{{ .Site.BaseURL }}previously" title="Previously on...">{{ index .Site.Data.seo.year }}</a> – 2023.
-    </div>
+    <p class="credits">Powered By <a href="https://gohugo.io" class="text-semibold shover:text-gray-500">Hugo</a> ↭ <a href="https://stats.ksvblog.site" target="_blank">Site Stats</a></p>
+    <div class="credits copyright">{{ index .Site.Data.seo.license }} <a class="text-semibold hover:text-gray-500" href="{{ .Site.BaseURL }}previously" title="Previously on...">{{ index .Site.Data.seo.year }}</a> – <a class="text-semibold hover:text-gray-500" href="{{ .Site.BaseURL }}update" title="Current Updates">{{ now.Year }}</a>.</div>
   </div>
 </footer>
 {{ partial "search-modal" (dict "Context" . "Class" "search-modal") }}
