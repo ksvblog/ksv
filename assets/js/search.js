@@ -123,14 +123,7 @@ if (hasSearchWrapper) {
       }
       return item.data.some((el) => {
         const regex = new RegExp(searchString, 'gi');
-        return (
-          el.title.toLowerCase().match(regex) ||
-          el.description?.toLowerCase().match(regex) ||
-          el.searchKeyword.toLowerCase().match(regex) ||
-          el.content.toLowerCase().match(regex) ||
-          el.tags?.toLowerCase().match(regex) ||
-          el.categories?.toLowerCase().match(regex)
-        );
+        return el.title.toLowerCase().match(regex) || el.description?.toLowerCase().match(regex) || el.searchKeyword.toLowerCase().match(regex) || el.content.toLowerCase().match(regex) || el.tags?.toLowerCase().match(regex) || el.categories?.toLowerCase().match(regex);
       });
     });
 
@@ -215,15 +208,7 @@ if (hasSearchWrapper) {
         return content;
       };
 
-      const filteredItems = item.data.filter(
-        (d) =>
-          d.title.toLowerCase().includes(searchString) ||
-          (description === 'true' ? d.description?.toLowerCase().includes(searchString) : '') ||
-          d.searchKeyword.toLowerCase().includes(searchString) ||
-          (tags === 'true' ? d.tags?.toLowerCase().includes(searchString) : '') ||
-          (categories === 'true' ? d.categories?.toLowerCase().includes(searchString) : '') ||
-          d.content.toLowerCase().includes(searchString),
-      );
+      const filteredItems = item.data.filter((d) => d.title.toLowerCase().includes(searchString) || (description === 'true' ? d.description?.toLowerCase().includes(searchString) : '') || d.searchKeyword.toLowerCase().includes(searchString) || (tags === 'true' ? d.tags?.toLowerCase().includes(searchString) : '') || (categories === 'true' ? d.categories?.toLowerCase().includes(searchString) : '') || d.content.toLowerCase().includes(searchString));
 
       // pull template from hugo templarte definition
       let templateDefinition =
@@ -279,15 +264,7 @@ if (hasSearchWrapper) {
     };
 
     const filteredItemsLength = searchItems.reduce((totalLength, item) => {
-      const filteredItems = item.data.filter(
-        (d) =>
-          d.title.toLowerCase().includes(searchString) ||
-          (description === 'true' ? d.description?.toLowerCase().includes(searchString) : '') ||
-          d.searchKeyword.toLowerCase().includes(searchString) ||
-          (tags === 'true' ? d.tags?.toLowerCase().includes(searchString) : '') ||
-          (categories === 'true' ? d.categories?.toLowerCase().includes(searchString) : '') ||
-          d.content.toLowerCase().includes(searchString),
-      );
+      const filteredItems = item.data.filter((d) => d.title.toLowerCase().includes(searchString) || (description === 'true' ? d.description?.toLowerCase().includes(searchString) : '') || d.searchKeyword.toLowerCase().includes(searchString) || (tags === 'true' ? d.tags?.toLowerCase().includes(searchString) : '') || (categories === 'true' ? d.categories?.toLowerCase().includes(searchString) : '') || d.content.toLowerCase().includes(searchString));
 
       return totalLength + filteredItems.length;
     }, 0);
