@@ -9,4 +9,6 @@
 <script src="{{ $site.Permalink }}"></script>
 {{ $search := resources.Get "js/search.js" }}
 <script src="{{ $search.Permalink }}"></script>
+{{ $speedlify := resources.Get "js/speedlify-score.js" }}
+<script src="{{ $speedlify.Permalink }}"></script>
 {{ if .Params.katex }}{{ partial "misc/katex" . }}{{ end }}
