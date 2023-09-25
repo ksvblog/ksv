@@ -6,11 +6,10 @@
   }
 </script>
 {{ $site := resources.Get "js/site.js" }}
-<script src="{{ $site.Permalink }}"></script>
 {{ $search := resources.Get "js/search.js" }}
-<script src="{{ $search.Permalink }}"></script>
 {{ $speedlify := resources.Get "js/speedlify-score.js" }}
-<script src="{{ $speedlify.Permalink }}"></script>
+{{ $site := slice $site $search $speedlify | resources.Concat "js/site.js" | resources.Minify }}
+<script src="{{ $site.Permalink }}"></script>
 {{ if .Params.katex }}{{ partial "misc/katex" . }}{{ end }}
 {{ $brands := resources.Get "fontawesome/js/brands.js" }}
 {{ $light := resources.Get "fontawesome/js/light.js" }}
