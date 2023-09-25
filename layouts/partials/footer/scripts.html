@@ -12,3 +12,8 @@
 {{ $speedlify := resources.Get "js/speedlify-score.js" }}
 <script src="{{ $speedlify.Permalink }}"></script>
 {{ if .Params.katex }}{{ partial "misc/katex" . }}{{ end }}
+{{ $fa := resources.Get "fontawesome/js/fontawesome.js" }}
+{{ $brands := resources.Get "fontawesome/js/brands.js" }}
+{{ $regular := resources.Get "fontawesome/js/regular.js" }}
+{{ $fontawesome := slice $fa $brands $regular | resources.Concat "js/fa.js" }}
+<script src="{{ $fontawesome.Permalink }}"></script>
