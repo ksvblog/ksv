@@ -9,11 +9,11 @@
 {{ $search := resources.Get "js/search.js" }}
 {{ $speedlify := resources.Get "js/speedlify-score.js" }}
 {{ $site := slice $site $search $speedlify | resources.Concat "js/site.js" | resources.Minify }}
-<script src="{{ $site.Permalink }}" async></script>
+<script src="{{ $site.Permalink }}" defer></script>
 {{ if .Params.katex }}{{ partial "misc/katex" . }}{{ end }}
 {{ $brands := resources.Get "fontawesome/js/brands.js" }}
 {{ $light := resources.Get "fontawesome/js/light.js" }}
 {{ $regular := resources.Get "fontawesome/js/regular.js" }}
 {{ $fa := resources.Get "fontawesome/js/fontawesome.js" }}
 {{ $fontawesome := slice $brands $light $regular $fa | resources.Concat "js/fa.js" | resources.Minify }}
-<script src="{{ $fontawesome.Permalink }}" async></script>
+<script src="{{ $fontawesome.Permalink }}" defer></script>
