@@ -21,7 +21,6 @@
     <meta property="article:author" content="{{ humanize . }}" />
     <meta name="author" content="{{ humanize . }}" />
   {{ end }}
-
   {{ with.Params.category }}
     <meta name="news_keywords" content="{{ index . 0 }}" />
     <meta property="article:section" content="{{ index . 0 }}" />
@@ -49,34 +48,7 @@
         "name": "{{ .Site.Title }}",
         "logo": {
           "@type": "imageObject",
-          "url": "https://ksvblog.in/favicon.png"
-        }
-      }
-    }
-  </script><script defer type="application/ld+json">
-    {
-      "@context": "http://schema.org",
-      "@type": "Article",
-      "headline": {{ .Title }},
-      "author": {
-        "@type": "Person",
-        "name": "{{ .Site.Params.github }}"
-      },
-      "datePublished": "{{ .Date.Format "2006-01-02" }}",
-      "description": {{ .Description }},
-      "wordCount": {{ .WordCount }},
-      "mainEntityOfPage": "True",
-      "dateModified": "{{ .Lastmod.Format "2006-01-02" }}",
-      "image": {
-        "@type": "imageObject",
-        "url": "{{ with .Params.image }}{{ . }}{{ end }}"
-      },
-      "publisher": {
-        "@type": "Organization",
-        "name": "{{ .Site.Title }}",
-        "logo": {
-          "@type": "imageObject",
-          "url": "https://ksvblog.in/favicon.png"
+          "url": "https://ksvblog.site/favicon.png"
         }
       }
     }
