@@ -33,8 +33,10 @@
     {{- else if $page.HasMenuCurrent .Menu . }}
       {{- $attrs = merge $attrs (dict "class" "ancestor text-blue-800" "aria-current" "true") }}
     {{- end }}
+    {{- $icon := printf "<i class=\"%s\"></i>" .Pre -}}
+    {{- $text := print $icon " " .Name | safeHTML -}}
     <li class="font-medium sm:py-4">
-      <a {{- range $k, $v := $attrs }}{{- with $v }}{{- printf " %s=%q" $k $v | safeHTMLAttr }}{{- end }}{{- end -}}>{{ or (T .Identifier) .Name | safeHTML }}</a>
+      <a {{- range $k, $v := $attrs }}{{- with $v }}{{- printf " %s=%q" $k $v | safeHTMLAttr }}{{- end }}{{- end -}}>{{ $text }}</a>
       {{- with .Children }}
         <ul>
           {{- partial "inline/menu/items.html" (dict "page" $page "menuEntries" .) }}
