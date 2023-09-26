@@ -7,11 +7,9 @@
     <title>{{- if .IsHome -}}Home | {{ .Site.Title }}{{- else if .Params.hide_site_title -}}{{ .Page.Title }}{{- else if .Page.Title -}}{{ .Page.Title }} | {{ .Site.Title }}{{- else -}}{{ .Site.Title }}{{- end -}}</title>
     {{- partial "header/head" . -}}
   </head>
-  <html>
-    <body class="container mx-auto py-3 sm:py-0 px-2 md:px-0 bg-white dark:bg-gray-900 dark:text-white">
-      {{- partial "header/header" . -}}
-      <section class="my-10" id="content">{{- block "main" . }}{{- end }}</section>
-      {{- partial "footer/footer" . -}}
-    </body>
-  </html>
+  <body class="container mx-auto py-3 sm:py-0 px-2 md:px-0 bg-white dark:bg-gray-900 dark:text-white">
+    {{- partial "header/header" . -}}
+    <section class="my-10" id="content">{{- block "main" . }}{{- end }}</section>
+    {{- partial "footer/footer" . -}}
+  </body>
 </html>
