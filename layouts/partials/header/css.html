@@ -12,4 +12,3 @@
 {{ with resources.Get "scss/style.scss" | toCSS | postCSS |resources.Minify }}
   <link rel="stylesheet" href="{{ .RelPermalink }}" />
 {{ end }}
----
