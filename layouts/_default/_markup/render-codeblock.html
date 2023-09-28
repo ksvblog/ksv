@@ -16,13 +16,11 @@
     </div>
     {{- if transform.CanHighlight .Type }}
       <div class="flex">
-        <div class="grow">
-          <pre tabindex="0" class="chroma px-4 py-3"><code class="language-{{ .Type }} break-words" data-lang="{{ .Type }}">{{- with transform.HighlightCodeBlock . -}}{{ .Inner }}{{- end -}}  </code></pre>
-        </div>
+          <pre tabindex="0" class="chroma px-4 py-3 overflow-x-auto whitespace-pre-wrap"><code class="language-{{ .Type }} break-words" data-lang="{{ .Type }}">{{- with transform.HighlightCodeBlock . -}}{{ .Inner }}{{- end -}}</code></pre>
       </div>
     {{- else }}
-      <div class="flex whitespace-normal">
-        <pre tabindex="0" class="grow bg-black px-4 py-3 break-words"><code class="language-{{ .Type }} break-words" data-lang="{{ .Type }}">{{ .Inner }}</code></pre>
+      <div class="w-full whitespace-normal">
+        <pre tabindex="0" class="bg-black px-4 py-3 overflow-x-auto whitespace-pre-wrap"><code class="language-{{ .Type }} break-words" data-lang="{{ .Type }}">{{ .Inner }}</code></pre>
       </div>
     {{- end }}
   </div>
