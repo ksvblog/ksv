@@ -36,7 +36,7 @@
     {{- $icon := printf "<i class=\"%s w-4 h-4\"></i>" .Pre -}}
     {{- $text := printf "%s <span class=\"hidden md:inline-flex\">%s</span>" $icon .Name | safeHTML -}}
     <li class="font-medium sm:py-4">
-      <a {{- range $k, $v := $attrs }}{{- with $v }}{{- printf " %s=%q" $k $v | safeHTMLAttr }}{{- end }}{{- end -}}>{{ $text }}</a>
+      <a {{- range $k, $v := $attrs }}{{- with $v }}{{- printf " %s=%q" $k $v | safeHTMLAttr }}{{- end }}{{- end -}} aria-label="{{ or (T .Identifier) .Name | safeHTML }}">{{ $text }}</a>
       {{- with .Children }}
         <ul>
           {{- partial "inline/menu/items.html" (dict "page" $page "menuEntries" .) }}
