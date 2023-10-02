@@ -1,4 +1,6 @@
 {{- partial "header/seo" . -}}
 {{- partial "header/gtm" . -}}
+{{ template "_internal/google_analytics.html" . }}
+{{ template "_internal/google_analytics_async.html" . }}
 {{- partial "search-index" . -}}
 {{ partialCached  "header/css" . }}
