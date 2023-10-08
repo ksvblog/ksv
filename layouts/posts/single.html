@@ -1,6 +1,6 @@
 {{ define "main" }}
   <section id="post">
-    <header class="mb-10 select-none">
+    <header class="mb-10">
       {{ $author := index .Site.Data.authors (.Params.author | default "default") }}
       <h1 class="font-sans text-2xl leading-tight font-bold text-gray-800">{{ .Title }}</h1>
       <aside id="meta">
