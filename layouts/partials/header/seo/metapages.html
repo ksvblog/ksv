@@ -1,16 +1,13 @@
 <meta property="og:type" content="website" />
 <meta name="author" content="{{ .Site.Params.author }}" />
 <script type='application/ld+json'>
-    {
-        "@context": "https://schema.org",
-        "@type": "WebPage",
-        "url": "{{ .Permalink }}",
-        "mainEntity": {
-        "@type": "LegalService",
-        "name": "{{ .Site.Params.LawFirmName }}",
-        "logo": "{{ .Site.Params.logo2 | absURL }}",
+{
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "url": "{{ .Permalink }}",
+    "mainEntity": {
         "founder": "{{ .Site.Params.founder }}",
-        "foundingDate":  "{{ .Site.Params.foundingdate }}",
+        "foundingDate": "{{ .Site.Params.foundingdate }}",
         "foundingLocation": "{{ .Site.Params.foundinglocation }}",
         "slogan": "{{ .Site.Params.slogan}}",
         "url": "{{ .Site.BaseURL }}",
@@ -26,24 +23,26 @@
         "telephone": "{{ .Site.Params.mobile }}",
         "currenciesAccepted": "{{.Site.Params.currency}}",
         "paymentAccepted": "{{ .Site.Params.paymentsAccepted | jsonify }}",
-        "contactPoint": [{
-            "@type" : "ContactPoint",
-            "telephone": "{{ .Site.Params.mobile }}",
-            "contactType": "customer service",
-            "areaServed": "{{ .Site.Params.areaserved | jsonify }}",
-            "availableLanguage": "{{ .Site.Params.availableLanguage | jsonify }}",
-            "hoursAvailable": "{{ .Site.Params.hoursAvailable }}"
-        }],
+        "contactPoint": [
+            {
+                "@type": "ContactPoint",
+                "telephone": "{{ .Site.Params.mobile }}",
+                "contactType": "customer service",
+                "areaServed": "{{ .Site.Params.areaserved | jsonify }}",
+                "availableLanguage": "{{ .Site.Params.availableLanguage | jsonify }}",
+                "hoursAvailable": "{{ .Site.Params.hoursAvailable }}"
+            }
+        ],
         "sameAs": [
             "{{ .Site.Params.facebook }}",
-            "{{ .Site.Params.github }}"
+            "{{ .Site.Params.github }}",
             "{{ .Site.Params.linkedin }}",
             "{{ .Site.Params.SuperLawyers }}",
             "{{ .Site.Params.justia }}",
             "{{ .Site.Params.avvo }}"
         ],
         "name": "{{ .Title }}",
-        "logo": "https://ksvblog.site/favicon.png"
+        "logo": "https://ksvblog.site/favicon.png",
         "description": "{{ .Site.Params.description }}",
         "address": {
             "@type": "PostalAddress",
@@ -61,49 +60,36 @@
         "hasMap": "{{ .Site.Params.link }}",
         "openingHours": "{{ .Site.Params.hoursAvailable }}",
         "priceRange": "{{ .Site.Params.price }}",
-        "areaServed": [{
-            "@type": "Place",
-            "name": "{{ .Site.Params.foundinglocation }}",
-            "sameAs": "{{ .Site.Params.wikipediacity }}"
-        },
-        {"@type": "Place",
-            "name": "{{ .Site.Params.areaserved }}",
-            "sameAs": "{{ .Site.Params.wikipediacity }}"
-        }
+        "areaServed": [
+            {
+                "@type": "Place",
+                "name": "{{ .Site.Params.foundinglocation }}",
+                "sameAs": "{{ .Site.Params.wikipediacity }}"
+            },
+            {
+                "@type": "Place",
+                "name": "{{ .Site.Params.areaserved }}",
+                "sameAs": "{{ .Site.Params.wikipediacity }}"
+            }
         ],
         "memberOf": [
-            {"@type": "Organization",
+            {
+                "@type": "Organization",
                 "name": "{{ .Site.Params.org1name }}",
                 "description": "{{ .Site.Params.org1description }}",
                 "url": "{{ .Site.Params.org1url }}"
             },
-            {"@type": "Organization",
+            {
+                "@type": "Organization",
                 "name": "{{ .Site.Params.org2name }}",
                 "description": "{{ .Site.Params.org2description }}",
                 "url": "{{ .Site.Params.org2url }}"
             }
         ],
         "hasOfferCatalog": {
-          "@type": "OfferCatalog",
-          "name": "Legal services",
-          "itemListElement": [
-              {{- $pages := where .Site.RegularPages "Params.practice_area" "Divorce" -}}
-              {{- $jsonPages := slice -}}
-              {{- range $pages -}}
-              {{- $jsonPages = $jsonPages | append (dict "url" .Permalink "name" .Title) -}}
-              {{- end -}}
-              {{- range $index, $page := $jsonPages -}}
-              {
-                  "@type": "Offer",
-                  "itemOffered": {
-                      "@type": "Service",
-                      "name": "{{ $page.name }}",
-                      "url": "{{ $page.url }}"
-                  }
-              }{{- if ne $index (sub (len $jsonPages) 1) -}},{{- end -}}
-              {{- end -}}
-            ]
-            }
-         }
-     }
-     </script>
+            "@type": "OfferCatalog",
+            "name": "Legal services"
+        }
+    }
+}
+</script>
