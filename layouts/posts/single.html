@@ -2,17 +2,18 @@
   <section id="post">
     <header class="mb-10">
       {{ $author := index .Site.Data.authors (.Params.author | default "default") }}
-      <h1 class="font-sans text-2xl leading-tight font-bold text-gray-800">{{ .Title }}</h1>
+      <h1 class="font-sans text-2xl leading-tight font-bold text-gray-400">{{ .Title }}</h1>
       <aside id="meta">
         <p class="text-gray-500 mt-2">
           <strong>Published:</strong>
           <time datetime="{{ .PublishDate.Format "2006-01-02 " }}">{{ .PublishDate.Format "Jan 2, 2006" }}</time>
-          •
-          <strong>Lastmod:</strong>
-          {{ .Lastmod.Format "Jan 2, 2006" }}
-          •
-          <strong>Author:</strong>
-          {{ $author.name }}
+          <span class="select-none">
+            •
+            <strong>Lastmod:</strong>
+            {{ .Lastmod.Format "Jan 2, 2006" }}
+            •
+            <strong>Author:</strong> {{ $author.name }}
+          </span>
           • {{ .ReadingTime }} {{ if eq .ReadingTime 1 }}min{{ else }}mins{{ end }} read • {{ .WordCount }} Words
         </p>
         {{ with .GetTerms "tags" }}
@@ -37,7 +38,7 @@
         {{ end }}
       </aside>
     </header>
-    <article class="md:leading-relaxed leading-7 text-gray-700 break-words my-10" id="content">{{ .Content }}</article>
+    <article class="leading-loose text-gray-700 break-words my-10" id="content">{{ .Content }}</article>
     <aside class="m-4 md:mx-0 md:my-2 border-t border-gray-300 break-words">
       <div class="flex">
         {{ with .PrevInSection }}
