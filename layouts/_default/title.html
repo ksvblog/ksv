@@ -1,0 +1,9 @@
+<article class="post gorw">
+  <h1 class="font-sans text-base leading-tight font-bold text-gray-800 dark:text-white">
+    <a href="{{ .Permalink }}" class="underline underline-offset-1">{{ .Title }}</a> —
+    <span class="text-gray-500 text-sm mt-1">
+      <time datetime="{{ .Date.Format "Mon, Jan 2, 2006" }}">{{ .PublishDate.Format "January 2, 2006" }}</time>
+      • {{ .ReadingTime }} {{ if eq .ReadingTime 1 }}min{{ else }}mins{{ end }} read • {{ .FuzzyWordCount }} Words
+    </span>
+  </h1>
+</article>
