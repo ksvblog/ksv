@@ -1,6 +1,6 @@
 {{ if $.Site.Params.gtm }}
-<!-- Google Tag Manager -->
-<!-- create dataLayer -->
+  <!-- Google Tag Manager -->
+  <!-- create dataLayer -->
 <script>
   <!-- OPTIONAL dataLayer -->
   var dataLayer = (window.dataLayer = window.dataLayer || []);
@@ -8,8 +8,7 @@
     page: "{{ .Title }}",
     categories: "Your dataLayer",
   });
-</script>
-<script>
+</script><script>
   (function (w, d, s, l, i) {
     w[l] = w[l] || [];
     w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
@@ -21,5 +20,5 @@
     f.parentNode.insertBefore(j, f);
   })(window, document, "script", "dataLayer", "{{ $.Site.Params.gtm }}");
 </script>
-<!-- End Google Tag Manager -->
+  <!-- End Google Tag Manager -->
 {{ end }}
